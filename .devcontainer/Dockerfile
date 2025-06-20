@@ -3,9 +3,9 @@
 FROM mcr.microsoft.com/devcontainers/base:jammy
 
 RUN \
-    apt-get update \
-    && apt-get upgrade -y \
-    && apt-get install -y bash-completion curl
+    apt update \
+    && apt upgrade -y \
+    && apt install -y bash-completion curl ffmpeg
 
 # Coding only for vscode user and not root
 USER vscode
