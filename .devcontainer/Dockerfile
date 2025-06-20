@@ -12,3 +12,5 @@ USER vscode
 
 RUN curl -sSL https://install.python-poetry.org | python3 - \
     && bash -c "echo 'source <(poetry completions bash)' >> ~/.bashrc"
+
+RUN curl -fsSL https://ollama.com/install.sh | sh
