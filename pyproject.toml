@@ -6,7 +6,13 @@ authors = ["Kim, Andrew <andrewkimka@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = ">=3.11"
+python = ">=3.11, <4.0"
+fastapi = "^0.115.13"
+faster-whisper = "^1.1.1"
+llama-index-llms-ollama = "^0.6.2"
+yt-dlp = "^2025.6.9"
+pydantic = "^2.11.7"
+gradio = "^5.34.2"
 
 [tool.poetry.group.dev.dependencies]
 coverage = "^7.9.1"
