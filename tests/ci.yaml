@@ -1,5 +1,5 @@
 
-name: Remivity CI
+name: remivityty CI
 
 on: [push, pull_request]
 
@@ -36,7 +36,7 @@ jobs:
           poetry run ruff format tests
           poetry run ruff check tests
           poetry run mypy tests --ignore-missing-import
-          poetry run pytest --cov=remivity --cov-report term --cov-report xml
+          poetry run pytest --cov=remivityty --cov-report term --cov-report xml
 
       - name: Upload coverage report to Codecov
         uses: codecov/codecov-action@v4

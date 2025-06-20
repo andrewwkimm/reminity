@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "modele"
+name = "Remivity"
 version = "0.1.0"
-description = "modele"
+description = "A local video summarizer."
 authors = ["Kim, Andrew <andrewkimka@gmail.com>"]
 readme = "README.md"
 
@@ -24,14 +24,14 @@ ruff = "^0.12.0"
 
 [tool.coverage.run]
 branch = true
-source = ["modele"]
+source = ["remivity"]
 
 [tool.coverage.report]
 show_missing = true
 fail_under = 50
 
 [tool.mypy]
-files = ["modele", "tests"]
+files = ["remivity", "tests"]
 cache_dir = "${HOME}/.mypy_cache"
 ignore_errors = false
 disallow_untyped_defs = true
@@ -40,7 +40,7 @@ disallow_untyped_defs = true
 testpaths = ["tests"]
 
 [tool.pyright]
-include = ["modele"]
+include = ["remivity"]
 
 [tool.ruff]
 target-version = "py311"
