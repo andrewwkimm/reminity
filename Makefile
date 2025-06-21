@@ -11,10 +11,10 @@ build:
 	make test
 
 lint:
-	poetry run ruff check tests
+	poetry run ruff check --fix .
 
 reformat:
-	poetry run ruff format tests
+	poetry run ruff format .
 
 setup:
 	pre-commit install --install-hooks
