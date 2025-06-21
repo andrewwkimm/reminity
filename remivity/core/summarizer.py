@@ -10,8 +10,7 @@ def summarize_text(text: str, llm: LLM) -> str:
     if not text.strip():
         raise SummarizationError("Input text is empty.")
 
-    prompt = (
-        """Summarize the following transcript clearly and concisely:
+    prompt = """Summarize the following transcript clearly and concisely:
 
         Rules:
             - Focus on the main topics and key points
@@ -23,10 +22,9 @@ def summarize_text(text: str, llm: LLM) -> str:
 
         Summary:
         """
-    )
 
     try:
         response = llm.complete(prompt=prompt)
         return response.text.strip()
-    except Exception as e:
-        raise SummarizationError("Failed to summarize transcript.") from e
+    except Exception as error:
+        raise SummarizationError("Failed to summarize transcript.") from error
