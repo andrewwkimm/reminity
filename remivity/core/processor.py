@@ -25,13 +25,14 @@ def process_pipeline(
         elif audio_file_path:
             audio_path = Path(audio_file_path)
         else:
-            raise ProcessingError("A YouTube URL or an audio file must be provided.")
+            raise ProcessingError(
+                "A YouTube URL or an audio file must be provided.")
 
         transcript = transcribe_audio(
             audio_file=audio_path,
-            compute_type=config.whisper_compute_type,
-            device=config.whisper_device,
-            model=config.whisper_model,
+            compute_type=config.compute_type,
+            device=config.device,
+            model=config.model,
         )
         summary = summarize_text(transcript, config.llm)
 
