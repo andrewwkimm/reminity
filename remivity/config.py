@@ -7,9 +7,9 @@ from pydantic import BaseModel
 class PipelineConfig(BaseModel):
     """Configuration for the pipeline process."""
 
-    whisper_model: str
-    whisper_device: str
-    whisper_compute_type: str
+    model: str = "large-v3"
+    device: str = "auto"
+    compute_type: str = "default"
     llm: LLM
 
 
