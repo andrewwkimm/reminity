@@ -1,6 +1,7 @@
 """The Remivity configurations."""
 
 from llama_index.core.llms import LLM
+from llama_index.llms.ollama import Ollama
 from pydantic import BaseModel
 
 
@@ -10,7 +11,11 @@ class PipelineConfig(BaseModel):
     model: str = "large-v3"
     device: str = "auto"
     compute_type: str = "default"
-    llm: LLM
+    llm: LLM = Ollama(
+        model="mistral",
+        request_timeout=120.0,
+        json_mode=False,
+    )
 
 
 class SummaryConfig(BaseModel):
