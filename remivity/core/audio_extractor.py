@@ -11,7 +11,7 @@ from remivity.exceptions import AudioExtractionError
 def extract_audio_from_youtube(url: str, output_dir: Path | None = None) -> Path:
     """Extracts audio from a YouTube URL and saves it to the tmp/ directory."""
     if output_dir is None:
-        output_dir = Path("tmp")
+        output_dir = Path("scratch/tmp")
 
     output_dir.mkdir(parents=True, exist_ok=True)
     unique_id = uuid4().hex
