@@ -97,7 +97,7 @@ with gr.Blocks(
     with gr.Tab("📁 Upload file") as file_tab:
         file_input, file_button, file_summary, file_transcript = create_tab_content(
             gr.File(
-                label="Audio File",
+                label="File",
                 file_types=[".mp3", ".wav", ".m4a", ".flac"],
                 type="filepath",
             ),
