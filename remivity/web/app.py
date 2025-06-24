@@ -11,11 +11,13 @@ from remivity.core.processor import process_pipeline
 CONFIG = PipelineConfig()
 
 
-def process_input(youtube_url: str | None, audio_file: str | None) -> tuple[str, str]:
+def process_input(
+    youtube_url: str | None, audio_file_path: str | None
+) -> tuple[str, str]:
     """Process either YouTube URL or audio file and return transcript and summary."""
     result = process_pipeline(
         youtube_url=youtube_url,
-        audio_file_path=audio_file,
+        audio_file_path=audio_file_path,
         config=CONFIG,
     )
     return result["transcript"], result["summary"]
@@ -29,8 +31,7 @@ def create_tab_content(input_component: File | Textbox) -> tuple:
     with gr.Column():
         gr.HTML('<div class="transcript-label">Transcript</div>')
         with gr.Accordion("", open=False):
-            transcript = gr.Textbox(
-                label="", lines=10, max_lines=20, container=False)
+            transcript = gr.Textbox(label="", lines=10, max_lines=20, container=False)
 
     return input_component, button, summary, transcript
 
@@ -44,13 +45,13 @@ def setup_tab_events(
     """Setup click events for tabs."""
     if is_file_tab:
         button.click(
-            lambda file: process_input(youtube_url=None, audio_file=file),
+            lambda file: process_input(youtube_url=None, audio_file_path=file),
             inputs=[input_component],
             outputs=outputs,
         )
     else:
         button.click(
-            lambda url: process_input(youtube_url=url, audio_file=None),
+            lambda url: process_input(youtube_url=url, audio_file_path=None),
             inputs=[input_component],
             outputs=outputs,
         )
@@ -79,7 +80,7 @@ with gr.Blocks(
     gr.HTML('<div class="custom-header">Remivity</div>')
     gr.Markdown(
         """
-        <h3 style="display: inline-block; padding-right: 240px;">
+        <h3 style="display: inline-block; padding-left: 120px; padding-right: 120px;">
             Paste in a YouTube URL or a file from your local machine to get started.
         </h3>
         """
@@ -105,8 +106,7 @@ with gr.Blocks(
 
     setup_tab_events(url_button, url_input, [url_transcript, url_summary])
     setup_tab_events(
-        file_button, file_input, [
-            file_transcript, file_summary], is_file_tab=True
+        file_button, file_input, [file_transcript, file_summary], is_file_tab=True
     )
 
     gr.HTML('<div class="footer-text">Remivity</div>')
