@@ -51,8 +51,7 @@ def process_pipeline(
             )
 
         else:
-            raise ProcessingError(
-                "A YouTube URL or an audio file must be provided.")
+            raise ProcessingError("A YouTube URL or an audio file must be provided.")
 
         summary = summarize_text(transcript, config.llm)
 
