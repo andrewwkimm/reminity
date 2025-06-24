@@ -13,7 +13,7 @@ class PipelineConfig(BaseModel):
     compute_type: str = "default"
     llm: LLM = Ollama(
         model="mistral",
-        request_timeout=120.0,
+        request_timeout=300.0,
         json_mode=False,
     )
 
