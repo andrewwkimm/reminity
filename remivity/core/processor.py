@@ -24,13 +24,13 @@ def process_pipeline(
     try:
         if youtube_url:
             subtitle_path = get_youtube_captions(
-                youtube_url, output_dir=Path("tmp"))
+                youtube_url, output_dir=Path("scratch/tmp"))
 
             if subtitle_path:
                 transcript = subtitle_path.read_text(encoding="utf-8")
             else:
                 audio_path = download_youtube_audio(
-                    youtube_url, output_dir=Path("tmp"))
+                    youtube_url, output_dir=Path("scratch/tmp"))
                 delete_after = True
                 transcript = transcribe_audio(
                     audio_file=audio_path,
