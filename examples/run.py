@@ -7,18 +7,18 @@ from llama_index.llms.ollama import Ollama
 from remivity.config import PipelineConfig
 from remivity.core.processor import process_pipeline
 
-OLLAMA_MODEL = "mistral:7b-instruct-q4_0"
+OLLAMA_MODEL = "mistral"
 
-YOUTUBE_URL: str | None = "https://www.youtube.com/watch?v=XEWBixfnbb4"
+YOUTUBE_URL: str | None = "https://www.youtube.com/shorts/EhasnKFKMnk"
 AUDIO_FILE_PATH: Path | None = None
 
 llm = Ollama(
     model=OLLAMA_MODEL,
-    request_timeout=500.0,
+    request_timeout=300.0,
     json_mode=False,
 )
 
-config = PipelineConfig(model="large-v2")
+config = PipelineConfig(whisper_model="large-v2", llm=llm)
 
 if __name__ == "__main__":
     result = process_pipeline(
