@@ -10,18 +10,30 @@ def summarize_text(text: str, llm: LLM) -> str:
     if not text.strip():
         raise SummarizationError("Input text is empty.")
 
-    prompt = """Summarize the following transcript clearly and concisely:
+    prompt = f"""You are summarizing a video transcript which may have timestamps.
+If so, create a summary that ALWAYS includes timestamps for key points.
 
-        Rules:
-            - Focus on the main topics and key points
-            - Organize information logically. Make sure you include timestamps.
-            - Include important details, names, or numbers mentioned
-            - Don't add information not in the transcript
+IMPORTANT: Every major point in your summary MUST reference a timestamp from the
+transcript.
 
-        f"{text}\n\n
+FORMAT YOUR RESPONSE LIKE THIS:
+• [00:01:23] Main topic or key point discussed
+• [00:05:45] Another important point or transition
+• [00:12:30] Conclusion or final thoughts
 
-        Summary:
-        """
+RULES:
+- Extract the most important topics and ideas
+- ALWAYS include the timestamp [HH:MM:SS] before each point
+- Use the exact timestamps from the transcript
+- Focus on substantive content, not filler words
+- Organize chronologically by timestamp
+- If multiple related points happen close together, you can group them togehter
+
+TRANSCRIPT:
+{text}
+
+TIMESTAMP SUMMARY:
+"""
 
     try:
         response = llm.complete(prompt=prompt)
