@@ -13,11 +13,14 @@ from remivity.exceptions import ProcessingError
 
 
 def process_pipeline(
-    youtube_url: str | None,
-    audio_file_path: Path | str | None,
-    config: PipelineConfig,
+    youtube_url: str | None = None,
+    audio_file_path: Path | str | None = None,
+    config: PipelineConfig | None = None,
 ) -> dict:
     """Runs the full pipeline: audio → transcript → summary."""
+    if config is None:
+        config = PipelineConfig()
+
     audio_file: Path | None = None
     delete_after = False
 
@@ -51,7 +54,8 @@ def process_pipeline(
             )
 
         else:
-            raise ProcessingError("A YouTube URL or an audio file must be provided.")
+            raise ProcessingError(
+                "A YouTube URL or an audio file must be provided.")
 
         summary = summarize_text(transcript, config.llm)
 
