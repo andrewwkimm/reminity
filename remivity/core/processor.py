@@ -3,12 +3,12 @@
 from pathlib import Path
 
 from remivity.config import PipelineConfig
-from remivity.core.audio_extractor import (
+from remivity.core.summarizer import summarize_text
+from remivity.core.transcriber import transcribe_audio
+from remivity.core.youtube_handler import (
     download_youtube_audio,
     get_youtube_captions,
 )
-from remivity.core.summarizer import summarize_text
-from remivity.core.transcriber import transcribe_audio
 from remivity.exceptions import ProcessingError
 
 

@@ -5,7 +5,7 @@ from uuid import uuid4
 
 from yt_dlp import YoutubeDL
 
-from remivity.exceptions import AudioExtractionError
+from remivity.exceptions import YouTubeCaptionExtractionError
 
 
 def get_youtube_captions(url: str, output_dir: Path) -> Path | None:
@@ -56,10 +56,12 @@ def download_youtube_audio(url: str, output_dir: Path) -> Path:
         with YoutubeDL(ydl_opts) as ydl:
             ydl.download([url])
     except Exception as error:
-        raise AudioExtractionError("yt-dlp audio extraction failed.") from error
+        raise YouTubeCaptionExtractionError(
+            "yt-dlp audio extraction failed."
+        ) from error
 
     matching_files = list(output_dir.glob(f"audio_{unique_id}.*"))
     if not matching_files:
-        raise AudioExtractionError("Audio file not found after download.")
+        raise YouTubeCaptionExtractionError("Audio file not found after download.")
 
     return matching_files[0]

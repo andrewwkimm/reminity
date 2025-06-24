@@ -11,3 +11,7 @@ class ProcessingError(Exception):
 
 class SummarizationError(Exception):
     """Text summarization error."""
+
+
+class YouTubeCaptionExtractionError(Exception):
+    """YouTube caption extraction error."""
