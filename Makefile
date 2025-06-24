@@ -28,11 +28,17 @@ type_check:
 
 ################################################################################
 
+serve:
+	poetry run python remivity/web/app.py
+
+################################################################################
+
 .PHONY: \
 	build \
 	help \
 	lint \
 	reformat \
+	serve \
 	setup \
 	test \
 	type_check
