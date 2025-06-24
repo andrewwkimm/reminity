@@ -56,8 +56,7 @@ def download_youtube_audio(url: str, output_dir: Path) -> Path:
         with YoutubeDL(ydl_opts) as ydl:
             ydl.download([url])
     except Exception as error:
-        raise AudioExtractionError(
-            "yt-dlp audio extraction failed.") from error
+        raise AudioExtractionError("yt-dlp audio extraction failed.") from error
 
     matching_files = list(output_dir.glob(f"audio_{unique_id}.*"))
     if not matching_files:
